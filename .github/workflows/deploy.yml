@@ -13,11 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print working directory
-        run: pwd
-
-      - name: List project files
-        run: ls -la
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.1
 
       - name: Check Node version
         run: node --version
