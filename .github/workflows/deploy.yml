@@ -1,3 +1,4 @@
+
 name: CI/CD Pipeline
 
 on:
@@ -29,13 +30,9 @@ jobs:
 
     steps:
       - name: Connect to EC2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh
-
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key ${{ vars.EC2_USERNAME }}@${{ vars.EC2_HOST }} "hostname"
