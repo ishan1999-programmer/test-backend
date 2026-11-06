@@ -10,8 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print a message
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print working directory
+        run: pwd
+
+      - name: List project files
+        run: ls -la
 
       - name: Check Node version
         run: node --version
