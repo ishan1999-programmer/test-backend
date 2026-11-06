@@ -1,12 +1,3 @@
-const express = require("express");
-const path = require("path");
-
-const app = express();
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+const app = require("./app");
 
 app.listen(4000, () => console.log("server listening at port 4000.."));
-
-module.exports = app;
