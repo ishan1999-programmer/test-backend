@@ -1,3 +1,4 @@
+
 name: CI/CD Pipeline
 
 on:
@@ -24,7 +25,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-    ssh-test:
+  ssh-test:
     runs-on: ubuntu-latest
 
     steps:
