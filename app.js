@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 
 app.get("/health", (req, res) => {
   res.status(200).json({
-    status: "OKay",
+    status: "OK",
     message: "Server is running",
   });
 });

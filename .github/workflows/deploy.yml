@@ -29,10 +29,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Connect to EC2
+      - name: Deploy to EC2
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key ${{ vars.EC2_USERNAME }}@${{ vars.EC2_HOST }} "hostname"
+          ssh -o StrictHostKeyChecking=no \
+          -i ~/.ssh/deploy_key \
+          ${{ vars.EC2_USERNAME }}@${{ vars.EC2_HOST }} \
+          "cd /home/ubuntu/test-backend && git pull origin main && npm install && pm2 restart test-backend"
